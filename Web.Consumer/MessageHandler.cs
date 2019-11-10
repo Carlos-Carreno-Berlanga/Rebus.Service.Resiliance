@@ -16,16 +16,13 @@ namespace Web.Consumer
             _logger = logger;
         }
 
-        //public MessageHandler()
-        //{
 
-        //}
         public Task Handle(Message message)
         {
-            _logger.LogInformation($"Handling message ${message.Id} created at ${message.CreatedAt}");
+            _logger.LogWarning($"Handling message ${message.Id} created at ${message.CreatedAt}");
             if (_random.Next(10) % 5 == 0)
             {
-                throw new NotImplementedException();
+                throw new Exception();
             }
 
             return Task.CompletedTask;

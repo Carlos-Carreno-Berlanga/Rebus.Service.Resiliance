@@ -32,7 +32,7 @@ namespace Web.Consumer
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddLogging(configure => configure.AddConsole());
+            services.AddLogging(configure => configure.AddConsole().SetMinimumLevel(LogLevel.Debug));
             services.AutoRegisterHandlersFromAssemblyOf<MessageHandler>();
             services.AddRebus(configure => configure
             .Logging(l => l.Use(new MSLoggerFactoryAdapter(_loggerFactory)))
