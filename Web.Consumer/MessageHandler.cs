@@ -9,21 +9,26 @@ namespace Web.Consumer
 {
     public class MessageHandler : IHandleMessages<Message>
     {
-        private readonly ILogger _logger;
-        public MessageHandler(ILogger logger)
+        private readonly ILogger<MessageHandler> _logger;
+        private Random _random = new Random();
+        public MessageHandler(ILogger<MessageHandler> logger)
         {
             _logger = logger;
         }
-        public MessageHandler()
-        {
-            Console.WriteLine("eee");
-        }
+
+        //public MessageHandler()
+        //{
+
+        //}
         public Task Handle(Message message)
         {
             _logger.LogInformation($"Handling message ${message.Id} created at ${message.CreatedAt}");
+            if (_random.Next(10) % 5 == 0)
+            {
+                throw new NotImplementedException();
+            }
+
             return Task.CompletedTask;
-            //_logger.LogInformation($"Handling message ${message.Id} created at ${message.CreatedAt}");
-            //throw new NotImplementedException();
         }
     }
 }
