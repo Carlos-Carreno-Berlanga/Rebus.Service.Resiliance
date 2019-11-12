@@ -22,9 +22,9 @@ namespace Web.Consumer
             _logger.LogWarning($"Handling message ${message.Id} created at ${message.CreatedAt}");
             if (_random.Next(10) % 5 == 0)
             {
-                throw new Exception();
+                throw new Exception($"message ${message.Id} failed");
             }
-
+            _logger.LogWarning($"Message ${message.Id} handled succesfully");
             return Task.CompletedTask;
         }
     }
